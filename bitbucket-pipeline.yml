@@ -1,0 +1,25 @@
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Deploy Containers to ECS (Fargate) - Production
+          image: python:3.7.4-alpine3.10
+          caches:
+            - pip 
+            - docker
+          script:
+            - export ENV_NAME=$PRODUCTION_ENV_NAME
+            - echo $ENV_NAME
+            # Add deployment steps here
+
+    quality-assurance:
+      - step:
+          name: Deploy Containers to ECS (Fargate) - QA
+          image: python:3.7.4-alpine3.10
+          caches:
+            - pip 
+            - docker
+          script:
+            - export ENV_NAME=$QA_ENV_NAME
+            - echo $ENV_NAME
+            # Add deployment steps here
