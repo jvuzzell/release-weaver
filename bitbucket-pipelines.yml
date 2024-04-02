@@ -1,15 +1,16 @@
 # Define the common deployment steps as an anchor
 standardDeploymentSteps: &standardDeploymentSteps
-  - step:
-      name: Deploy Containers to ECS (Fargate)
-      script:
-        - echo $ENV_NAME
+  script:
+    - echo $ENV_NAME
 
 pipelines:
   branches:
     main:
-      - step:
-          name: Pre-Step
+      - step: &deployToProduction
+          name: Deploy to Production
           script:
             - export ENV_NAME=$PRODUCTION_ENV_NAME
-            - <<: *standardDeploymentSteps
+            - echo "Setting ENV_NAME to $ENV_NAME"
+      - step:
+          <<: *deployToProduction
+          <<: *standardDeploymentSteps
