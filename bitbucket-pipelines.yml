@@ -6,10 +6,11 @@ standardDeploymentSteps: &standardDeploymentSteps
 pipelines:
   branches:
     main:
-      - step:
+      - step: &deployToProduction
           name: Deploy to Production
           script:
             - export ENV_NAME=$PRODUCTION_ENV_NAME
             - echo "Setting ENV_NAME to $ENV_NAME"
-            - *standardDeploymentSteps
-
+      - steps:
+          - <<: *deployToProduction
+          - <<: *standardDeploymentSteps
