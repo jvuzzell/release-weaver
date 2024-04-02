@@ -10,17 +10,17 @@ pipelines:
   branches:
     main:
       - step: 
-        name: Deploy to Production
-        script:
-          - export SECURE=SECURE_VARIABLE
-          - export ENV_NAME=$PRODUCTION_ENV_NAME
-          - <<: *standardDeploymentSteps
-          # Add deployment steps specific to production here
+          name: Deploy to Production
+          script:
+            - export SECURE=SECURE_VARIABLE
+            - export ENV_NAME=$PRODUCTION_ENV_NAME
+            - <<: *standardDeploymentSteps
+            # Add deployment steps specific to production here
 
     quality-assurance:
       - step: 
-        name: Deploy to QA
-        script:
-          - export ENV_NAME=$QA_ENV_NAME
-          - <<: *standardDeploymentSteps
-          # Add deployment steps specific to QA here
+          name: Deploy to QA
+          script:
+            - export ENV_NAME=$QA_ENV_NAME
+            - <<: *standardDeploymentSteps
+            # Add deployment steps specific to QA here
