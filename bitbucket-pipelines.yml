@@ -2,6 +2,7 @@
 standardDeploymentSteps: &standardDeploymentSteps
   script:
     - echo $ENV_NAME
+    - echo "forever"
 
 pipelines:
   branches:
