@@ -9,7 +9,7 @@ standardDeploymentSteps: &standardDeploymentSteps
 pipelines:
   branches:
     main:
-      - step: *standardDeploymentSteps
+      - step: 
         name: Deploy to Production
         script:
           - export SECURE=SECURE_VARIABLE
@@ -18,7 +18,7 @@ pipelines:
           # Add deployment steps specific to production here
 
     quality-assurance:
-      - step: *standardDeploymentSteps
+      - step: 
         name: Deploy to QA
         script:
           - export ENV_NAME=$QA_ENV_NAME
