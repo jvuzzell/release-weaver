@@ -1,15 +1,19 @@
-pipelines:
-  branches:
-    main:
-      - step:
-          name: Deploy to Production 
-          deployment: production
-          script:
-            - echo $TEST_VALUE
+standardDeploymentSteps: &standardDeploymentSteps
 
-    quality-assurance:
-      - step:
-          name: Deploy to QA
-          deployment: quality-assurance
-          script:
-            - echo $TEST_VALUE
+  - step:
+      name: Deploy Containers to ECS (Fargate)
+      script:
+        - echo $TEST_VALUE
+
+pipelines:
+  default:
+    - step:
+        name: 'Deployment to Staging'
+        deployment: quality-assurance
+        script:
+          - <<: *standardDeploymentSteps
+    - step:
+        name: 'Deployment to Production'
+        deployment: production
+        script:
+          - <<: *standardDeploymentSteps
