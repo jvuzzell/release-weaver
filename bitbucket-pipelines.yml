@@ -4,13 +4,12 @@ standardDeploymentSteps: &standardDeploymentSteps
       name: Deploy Containers to ECS (Fargate)
       script:
         - echo $ENV_NAME
-        - echo $SECURE
 
 pipelines:
   branches:
     main:
       - step:
-          - export ENV_NAME=$PRODUCTION_ENV_NAME
-      - <<: *standardDeploymentSteps
-    quality-assurance:
+          name: Pre-Step
+          script:
+            - export ENV_NAME=$PRODUCTION_ENV_NAME
       - <<: *standardDeploymentSteps
