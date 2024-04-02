@@ -2,16 +2,14 @@
 standardDeploymentSteps: &standardDeploymentSteps
   script:
     - echo $ENV_NAME
-    - echo "forever"
 
 pipelines:
   branches:
     main:
-      - step: &deployToProduction
+      - step:
           name: Deploy to Production
           script:
             - export ENV_NAME=$PRODUCTION_ENV_NAME
             - echo "Setting ENV_NAME to $ENV_NAME"
-      - step:
-          <<: *deployToProduction
-          <<: *standardDeploymentSteps
+            - *standardDeploymentSteps
+
