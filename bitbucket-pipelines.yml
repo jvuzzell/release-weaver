@@ -9,6 +9,8 @@ standardDeploymentSteps: &standardDeploymentSteps
 pipelines:
   branches:
     main:
+      - step:
+          - export ENV_NAME=$PRODUCTION_ENV_NAME
       - <<: *standardDeploymentSteps
     quality-assurance:
       - <<: *standardDeploymentSteps
