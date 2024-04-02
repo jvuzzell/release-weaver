@@ -1,14 +1,14 @@
 pipelines:
   branches:
     main:
-      - step: *standardDeploymentSteps
+      - step:
         name: Deploy to Production 
         deployment: production
         script:
           - echo $TEST_VALUE
 
     quality-assurance:
-      - step: *standardDeploymentSteps
+      - step:
         name: Deploy to QA
         deployment: quality-assurance
         script:
