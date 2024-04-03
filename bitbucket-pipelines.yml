@@ -10,15 +10,15 @@ pipelines:
         name: Deploy to Quality Assurance
         deployment: quality-assurance
         <<: *Deploy-step
-        condition:
-          branches:
-            only:
-              - quality-assurance
+      condition:
+        branches:
+          only:
+            - quality-assurance
     - step:
         name: Deploy to Production
         deployment: production
         <<: *Deploy-step
-        condition:
-          branches:
-            only:
-              - main
+      condition:
+        branches:
+          only:
+            - main
