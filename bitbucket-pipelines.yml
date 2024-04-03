@@ -9,8 +9,10 @@ pipelines:
     - step:
         name: Deploy to Quality Assurance
         deployment: quality-assurance
+        condition: $BITBUCKET_BRANCH == "quality-assurance"
         <<: *Deploy-step
     - step:
         name: Deploy to Production
         deployment: production
+        condition: $BITBUCKET_BRANCH == "main"
         <<: *Deploy-step
