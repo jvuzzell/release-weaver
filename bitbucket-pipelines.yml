@@ -8,7 +8,7 @@ definitions:
     - step: 
         name: Test Sub-shell
         script:
-          - echo MYVAR
+          - echo $MYVAR
 pipelines:
   branches:
     main:
