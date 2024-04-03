@@ -6,6 +6,12 @@ definitions:
           - echo $TEST_VALUE
 pipelines:
   branches:
+    main:
+      - step:
+          name: Deploy to Production
+          deployment: production
+          <<: *Deploy-step
+          
     quality-assurance:
       - step:
           name: Deploy to Quality Assurance
