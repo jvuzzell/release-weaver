@@ -1,19 +1,28 @@
-standardDeploymentSteps: &standardDeploymentSteps
-
-  - step:
-      name: Deploy Containers to ECS (Fargate)
-      script:
-        - echo $TEST_VALUE
-
+definitions:
+  steps:
+    - step: &Test-step
+        name: Run tests
+        script:
+          - echo $GLOBAL_VARIABLE
+    - step: &Deploy-step
+        name: Deploy to staging
+        script:
+          - echo $TEST_VALUE
 pipelines:
   default:
+    - step: *Test-step
     - step:
-        name: 'Deployment to Staging'
+        <<: *Deploy-step
+        name: Deploy to Quality Assurance
         deployment: quality-assurance
-        script:
-          - <<: *standardDeploymentSteps
-    - step:
-        name: 'Deployment to Production'
-        deployment: production
-        script:
-          - <<: *standardDeploymentSteps
+  custom:
+    Staging Deployment
+      - step: *Test-step
+      - step:
+          <<: *Deploy-step
+          deployment: quality-assurance
+    Production Deployment
+      - step: *Test-step
+      - step:
+          <<: *Deploy-step
+          deployment: production
