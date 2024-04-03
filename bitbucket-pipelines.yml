@@ -1,11 +1,11 @@
 definitions:
-  steps: &Deploy-step
-    - step:
+  steps: 
+    - step: &Deploy-step
         name: Deploy Step
         script:
           - echo $TEST_VALUE
           - export MYVAR="SEASONED MEAT"
-    - step: 
+    - step: &Build-step
         name: Test Sub-shell
         script:
           - echo $MYVAR
@@ -16,9 +16,4 @@ pipelines:
           name: Deploy to Production
           deployment: production
           <<: *Deploy-step
-          
-    quality-assurance:
-      - step:
-          name: Deploy to Quality Assurance
-          deployment: quality-assurance
-          <<: *Deploy-step
+          <<: *Build-step
