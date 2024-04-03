@@ -1,17 +1,16 @@
 definitions:
   steps:
-    - step: &Test-step
-        name: Test Step
-        script:
-          - echo $GLOBAL_VARIABLE
     - step: &Deploy-step
         name: Deploy Step
         script:
           - echo $TEST_VALUE
 pipelines:
   default:
-    - step: *Test-step
     - step:
+        name: Deploy to Production
+        deployment: production
         <<: *Deploy-step
+    - step:
         name: Deploy to Quality Assurance
         deployment: quality-assurance
+        <<: *Deploy-step
