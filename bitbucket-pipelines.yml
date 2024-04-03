@@ -7,10 +7,10 @@ definitions:
 pipelines:
   default:
     - step:
-        name: Deploy to Production
-        deployment: production
-        <<: *Deploy-step
-    - step:
         name: Deploy to Quality Assurance
         deployment: quality-assurance
+        <<: *Deploy-step
+    - step:
+        name: Deploy to Production
+        deployment: production
         <<: *Deploy-step
