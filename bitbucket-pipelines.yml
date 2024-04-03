@@ -1,11 +1,11 @@
 definitions:
   steps:
     - step: &Test-step
-        name: Run tests
+        name: Test Step
         script:
           - echo $GLOBAL_VARIABLE
     - step: &Deploy-step
-        name: Deploy to staging
+        name: Deploy Step
         script:
           - echo $TEST_VALUE
 pipelines:
@@ -15,14 +15,3 @@ pipelines:
         <<: *Deploy-step
         name: Deploy to Quality Assurance
         deployment: quality-assurance
-  custom:
-    Staging Deployment
-      - step: *Test-step
-      - step:
-          <<: *Deploy-step
-          deployment: quality-assurance
-    Production Deployment
-      - step: *Test-step
-      - step:
-          <<: *Deploy-step
-          deployment: production
