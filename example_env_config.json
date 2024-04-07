@@ -1,0 +1,8 @@
+{
+    "PROJECT_TITLE": "", 
+    "DEFAULT_BRANCH": "main",
+    "TARGET_REPOSITORY": "",
+    "DEPLOY_BRANCH_QA": "quality-assurance",
+    "DEPLOY_BRANCH_STAGING": "staging",
+    "DEPLOY_BRANCH_PRODUCTION": "main"
+}
