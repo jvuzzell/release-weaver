@@ -82,6 +82,10 @@ releaseweaver.pr_submit() {
     pr_submit
 }
 
+releaseweaver.pr_update() { 
+    pr_update
+}
+
 # Display available commands
 echo "
 __________       .__                               
