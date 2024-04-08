@@ -12,9 +12,17 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-# Load and export the environment variables from the JSON file
+# Load and export the environment variables from the JSON file 
+target_repository=$(extract_json_string_attr "TARGET_REPOSITORY" "$CONFIG_FILE")
+
+export GIT_VENDOR_DOMAIN=$(extract_json_string_attr "GIT_VENDOR_DOMAIN" "$CONFIG_FILE")
+
+if [[ "$GIT_VENDOR_DOMAIN" == "bitbucket.org" ]]; then 
+    export TARGET_REPOSITORY="git@$GIT_VENDOR_DOMAIN/$target_repository.git" 
+    export PULL_REQUEST_LINK="https://$GIT_VENDOR_DOMAIN/$target_repository/pull-requests/"
+fi
+
 export PROJECT_TITLE=$(extract_json_string_attr "PROJECT_TITLE" "$CONFIG_FILE")
-export TARGET_REPOSITORY=$(extract_json_string_attr "TARGET_REPOSITORY" "$CONFIG_FILE")
 export TARGET_REMOTE_NAME=$(extract_json_string_attr "TARGET_REMOTE_NAME" "$CONFIG_FILE")
 export DEFAULT_BRANCH=$(extract_json_string_attr "DEFAULT_BRANCH" "$CONFIG_FILE")
 export JIRA_BOARD_ID=$(extract_json_string_attr "JIRA_BOARD_ID" "$CONFIG_FILE")

@@ -1,8 +1,14 @@
 {
-    "PROJECT_TITLE": "", 
+    "PROJECT_TITLE": "My Project",
+    "TARGET_REPOSITORY": "<account-name>/<repo-name>",
+    "GIT_VENDOR_DOMAIN": "bitbucket.org",
+    "TARGET_REMOTE_NAME": "origin",
     "DEFAULT_BRANCH": "main",
-    "TARGET_REPOSITORY": "",
+    "JIRA_BOARD_ID": "ABC",
+    "DEPLOY_BRANCH_DEVELOPMENT": "development",
     "DEPLOY_BRANCH_QA": "quality-assurance",
     "DEPLOY_BRANCH_STAGING": "staging",
-    "DEPLOY_BRANCH_PRODUCTION": "main"
+    "DEPLOY_BRANCH_PRODUCTION": "main",
+    "ALLOWED_DEPLOYMENT_BRANCHES": ["development","quality-assurance","staging","main"],
+    "ALLOWED_BRANCH_TYPES": ["hotfix","bugfix","feature"]
 }
